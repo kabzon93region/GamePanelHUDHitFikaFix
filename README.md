@@ -20,7 +20,7 @@ The **GamePanelHUDHit** module from the Game Panel HUD package must be enabled.
 ## Installation
 
 1. Install all dependencies from the table above.
-2. Download `GamePanelHUDHitFikaFix_v1.0.0.zip` from GitHub Releases or `GamePanelHUDHitFikaFix-release/` (sibling folder).
+2. Download `GamePanelHUDHitFikaFix_v1.0.0.zip` from **GitHub Releases**.
 3. Extract into your game root (folder with `EscapeFromTarkov.exe`).
 4. Install on **every Fika client** in coop (critical for non-host players).
 
@@ -66,10 +66,6 @@ Output: `..\GamePanelHUDHitFikaFix-release\`
 
 If the original author adds `ApplyClientShot` support in a future release, you can remove this patch.
 
-## Publish on The Forge
-
-See [docs/FORGE_PUBLISH.md](docs/FORGE_PUBLISH.md) (EN + RU).
-
 ## License
 
 MIT — see [LICENSE](LICENSE). Original mods use their authors' licenses (see Forge pages).
@@ -96,7 +92,7 @@ MIT — see [LICENSE](LICENSE). Original mods use their authors' licenses (see F
 ## Установка
 
 1. Установить зависимости из таблицы выше.
-2. Скачать `GamePanelHUDHitFikaFix_v1.0.0.zip` из GitHub Releases или папки `GamePanelHUDHitFikaFix-release/` (рядом с репозиторием).
+2. Скачать `GamePanelHUDHitFikaFix_v1.0.0.zip` из **GitHub Releases**.
 3. Распаковать в корень игры (`EscapeFromTarkov.exe`).
 4. Поставить **на каждый Fika-клиент** в coop (критично для не-хоста).
 
@@ -141,10 +137,6 @@ dotnet build -c Release -p:TarkovDir="U:\Games\EscapeFromTarkov4\"
 - **[Project Fika](https://github.com/project-fika/Fika-Plugin)** — coop для SPT
 
 Если автор встроит поддержку `ApplyClientShot` в будущий релиз — этот патч можно удалить.
-
-## Публикация на The Forge
-
-См. [docs/FORGE_PUBLISH.md](docs/FORGE_PUBLISH.md) (EN + RU).
 
 ## Лицензия
 

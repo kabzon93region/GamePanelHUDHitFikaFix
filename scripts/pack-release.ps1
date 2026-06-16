@@ -1,11 +1,17 @@
-# -*- coding: utf-8 -*-
-# Build Release and pack install zip for GitHub / Forge.
+﻿# -*- coding: utf-8 -*-
+# Build Release and pack install zip for GitHub Releases.
 # Usage: .\scripts\pack-release.ps1 [-TarkovDir "U:\Games\EscapeFromTarkov4\"]
 
 param(
     [string]$TarkovDir = "",
     [string]$Version = "1.0.0"
 )
+
+function Write-Utf8File {
+    param([string]$Path, [string]$Content)
+    $utf8 = New-Object System.Text.UTF8Encoding $false
+    [System.IO.File]::WriteAllText($Path, $Content, $utf8)
+}
 
 $ErrorActionPreference = "Stop"
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
@@ -59,8 +65,8 @@ $installRu = @"
 Проверка в логе: [HIT_FIKA_FIX] Patched ObservedPlayer.ApplyClientShot
 "@
 
-Set-Content -Path (Join-Path $StageDir "INSTALL_EN.md") -Value $installEn -Encoding UTF8
-Set-Content -Path (Join-Path $StageDir "INSTALL_RU.md") -Value $installRu -Encoding UTF8
+Write-Utf8File -Path (Join-Path $StageDir "INSTALL_EN.md") -Content $installEn
+Write-Utf8File -Path (Join-Path $StageDir "INSTALL_RU.md") -Content $installRu
 Copy-Item (Join-Path $RepoRoot "CHANGELOG.md") (Join-Path $StageDir "CHANGELOG.md") -ErrorAction SilentlyContinue
 
 if (-not (Test-Path $ReleaseRoot)) {
@@ -76,22 +82,19 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 Remove-Item $StageDir -Recurse -Force
 
 $readmeRelease = @"
-# GamePanelHUDHitFikaFix — Release package / Пакет релиза
+# GamePanelHUDHitFikaFix - Release package
 
-**EN:** Install zip for players. Upload to GitHub Releases and The Forge.
+**EN:** Install zip for players. Extract to EscapeFromTarkov root.
 
-**RU:** Установочный архив для игроков. Загрузить в GitHub Releases и на The Forge.
+**RU:** Установочный архив. Распаковать в корень EscapeFromTarkov.
 
-## Files / Файлы
+## Files
 
-- ``$ZipName`` — extract to game root / распаковать в корень игры
-
-## Publish / Публикация
-
-See repo ``docs/FORGE_PUBLISH.md`` / см. ``docs/FORGE_PUBLISH.md`` в репозитории.
+- $ZipName
+- INSTALL_EN.md / INSTALL_RU.md
 "@
 
-Set-Content -Path (Join-Path $ReleaseRoot "README.md") -Value $readmeRelease -Encoding UTF8
+Write-Utf8File -Path (Join-Path $ReleaseRoot "README.md") -Content ($readmeRelease + "`n")
 
 Write-Host ""
 Write-Host "=== Done ===" -ForegroundColor Green
