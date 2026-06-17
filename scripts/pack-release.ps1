@@ -82,16 +82,14 @@ Add-Type -AssemblyName System.IO.Compression.FileSystem
 Remove-Item $StageDir -Recurse -Force
 
 $readmeRelease = @"
-# GamePanelHUDHitFikaFix - Release package
+# GamePanelHUDHitFikaFix — пакет релиза
 
-**EN:** Install zip for players. Extract to EscapeFromTarkov root.
+Установочный zip для игроков. Распаковать в корень EscapeFromTarkov.
 
-**RU:** Установочный архив. Распаковать в корень EscapeFromTarkov.
-
-## Files
+## Файлы
 
 - $ZipName
-- INSTALL_EN.md / INSTALL_RU.md
+- INSTALL_EN.md / INSTALL_RU.md (инструкции внутри архива для игроков)
 "@
 
 Write-Utf8File -Path (Join-Path $ReleaseRoot "README.md") -Content ($readmeRelease + "`n")
